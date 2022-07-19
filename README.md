@@ -3,9 +3,7 @@
 ##### Description
 
 MiraRecycleView is a RecyclerView(advanced and flexible version of ListView)
-with pulling to refresh, loading more, swiping to dismiss, dragging and drop, animations ,sticky
-header, show or hide toolbar and FAB when scrolling and many other features.You can use
-it ```just like RecyclerView```. Support AndroidX now.
+with pulling to refresh,shimmer, loading more, animations .You can use
 
 Notice that MiraRecycleView is a project under development.
 
