@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="mira_toggle_show_error" format="integer">
+        <!-- Visible on screen; the default value. -->
+        <enum name="visible" value="0" />
+        <!-- Completely hidden, as if the view had not been added. -->
+        <enum name="gone" value="2" />
+    </attr>
+
+    <attr name="mira_error_back_ground_color" format="reference" />
+    <attr name="mira_error_image" format="reference" />
+    <attr name="mira_error_image_type" format="integer">
+        <enum name="other" value="0" />
+        <enum name="gif" value="1" />
+    </attr>
+
+    <attr name="mira_error_title" format="string" />
+    <attr name="mira_error_title_txt_color" format="reference" />
+    <attr name="mira_error_message" format="string" />
+    <attr name="mira_error_message_txt_color" format="reference" />
+
+    <attr name="mira_error_action" format="string" />
+    <attr name="mira_error_action_txt_color" format="reference" />
+    <attr name="mira_error_action_back_ground" format="reference" />
+
+    <attr name="mira_error_font" format="reference" />
+
+    <declare-styleable name="MiraErrorViewCreator">
+        <attr name="mira_attrs_error_enabled" format="boolean" />
+
+        <attr name="mira_toggle_show_error" />
+
+        <attr name="mira_error_back_ground_color" />
+        <attr name="mira_error_image" />
+        <attr name="mira_error_image_type" />
+
+        <attr name="mira_error_title" />
+        <attr name="mira_error_title_txt_color" />
+        <attr name="mira_error_message" />
+        <attr name="mira_error_message_txt_color" />
+
+        <attr name="mira_error_action" />
+        <attr name="mira_error_action_txt_color" />
+        <attr name="mira_error_action_back_ground" />
+
+        <attr name="mira_error_font" />
+    </declare-styleable>
+
+    <declare-styleable name="MiraRecycleViewV4">
+
+        <attr name="mira_attrs_enabled" format="boolean" />
+
+        <attr name="mira_toggle_show_shimmer" format="integer">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="2" />
+        </attr>
+
+        <attr name="mira_shimmer_layout" format="reference" />
+        <attr name="mira_shimmerColor" format="reference" />
+        <attr name="mira_maskColor" format="reference" />
+        <attr name="mira_duration" format="integer" />
+        <attr name="mira_countItem" format="integer" />
+
+        <attr name="mira_refreshing" format="boolean" />
+
+        <attr name="mira_toggle_show_error" />
+        <attr name="mira_error_back_ground_color" />
+        <attr name="mira_error_image" />
+        <attr name="mira_error_image_type" />
+        <attr name="mira_error_title" />
+        <attr name="mira_error_title_txt_color" />
+        <attr name="mira_error_message" />
+        <attr name="mira_error_message_txt_color" />
+        <attr name="mira_error_action" />
+        <attr name="mira_error_action_txt_color" />
+        <attr name="mira_error_action_back_ground" />
+        <attr name="mira_error_font" />
+
+        <attr name="mira_progress_txt_color" format="reference" />
+
+        <attr name="mira_reversed_layout" format="integer">
+            <!-- Visible on screen; the default value. -->
+            <enum name="reversed" value="0" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="not_reversed" value="1" />
+        </attr>
+
+
+    </declare-styleable>
+
+    <declare-styleable name="SkeletonLayout">
+        <attr name="maskColor" format="color" />
+        <attr name="maskCornerRadius" format="dimension" />
+        <attr name="showShimmer" format="boolean" />
+        <attr name="shimmerColor" format="color" />
+        <attr name="shimmerDurationInMillis" format="integer" />
+        <attr name="shimmerDirection" format="enum">
+            <enum name="left_to_right" value="0" />
+            <enum name="right_to_left" value="1" />
+        </attr>
+        <attr name="shimmerAngle" format="integer" />
+    </declare-styleable>
+
+
+</resources>

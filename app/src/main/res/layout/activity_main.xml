@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".MainActivity">
+
+    <com.yehia.reda.mira_recycle_view_tools.lib.MiraRecycleViewV4
+        android:id="@+id/mrv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mira_attrs_enabled="true"
+        app:mira_attrs_error_enabled="true"
+        app:mira_error_action_back_ground="@drawable/shape_btn"
+        app:mira_error_message="ugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiuugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiuugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiu"
+        app:mira_refreshing="true"
+        app:mira_shimmer_layout="@layout/item3"
+        app:mira_toggle_show_error="gone"
+        app:mira_reversed_layout="not_reversed"
+        app:mira_toggle_show_shimmer="visible" />
+
+
+    <!--    <com.yehia.reda.mira_recycle_view_tools.lib.MiraErrorViewCreator-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:mira_attrs_error_enabled="true"-->
+    <!--        app:mira_error_action_back_ground="@drawable/shape_btn"-->
+    <!--        app:mira_error_image="@drawable/ic_no_connection"-->
+    <!--        app:mira_error_image_type="other"-->
+    <!--        app:mira_error_message="ugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiuugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiuugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiu"-->
+    <!--        app:mira_toggle_show_error="visible" -->
+    <!--        app:mira_error_title="dgsyjhfgdsjfhds"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

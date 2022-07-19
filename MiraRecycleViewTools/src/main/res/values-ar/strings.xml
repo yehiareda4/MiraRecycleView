@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ooops">عفوًا</string>
+    <string name="try_again">حاول مره اخري</string>
+    <string name="load_more">جاري تحميل المزيد من البيانات</string>
+    <string name="no_more_data">لا يوجد مزيد من البيانات</string>
+</resources>

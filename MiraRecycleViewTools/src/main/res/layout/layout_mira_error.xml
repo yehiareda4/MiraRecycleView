@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_error"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_error_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/giv_error_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_no_connection_vector"
+                android:maxWidth="@dimen/_225sdp"
+                android:maxHeight="@dimen/_225sdp"
+                android:minWidth="@dimen/_125sdp"
+                android:minHeight="@dimen/_125sdp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_error_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_no_connection_vector"
+                android:maxWidth="@dimen/_225sdp"
+                android:maxHeight="@dimen/_225sdp"
+                android:minWidth="@dimen/_125sdp"
+                android:minHeight="@dimen/_125sdp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_error_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_error_image"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:fontFamily="@font/urw_din_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:text="@string/ooops"
+            android:textColor="@color/txt_title"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_error_title"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:fontFamily="@font/urw_din_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:textColor="@color/txt_message"
+            android:textSize="@dimen/_8sdp" />
+
+        <Button
+            android:id="@+id/btn_error_action"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@id/tv_error_message"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/shape_btn"
+            android:paddingHorizontal="@dimen/_34sdp"
+            android:text="@string/try_again"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

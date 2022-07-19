@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#fff</color>
+
+    <color name="skeleton_mask">#EDEAEA</color>
+    <color name="skeleton_shimmer">#535252</color>
+    <color name="colorPrimaryX">#FFEB3B</color>
+    <color name="txt_message">#868585</color>
+    <color name="txt_title">#4E4E4E</color>
+
+</resources>

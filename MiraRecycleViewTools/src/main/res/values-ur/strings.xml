@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ooops">افوہ</string>
+    <string name="try_again">دوبارہ کوشش کریں</string>
+    <string name="load_more">مزید ڈیٹا لوڈ ہو رہا ہے۔</string>
+    <string name="no_more_data">مزید ڈیٹا نہیں ہے۔</string>
+</resources>

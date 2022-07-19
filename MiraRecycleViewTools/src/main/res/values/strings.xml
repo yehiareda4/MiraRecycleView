@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="try_again">Try Again</string>
+    <string name="ooops">Ooops</string>
+    <string name="load_more">Loading more data</string>
+    <string name="no_more_data">No more data</string>
+</resources>
