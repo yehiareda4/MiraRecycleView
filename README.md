@@ -23,9 +23,8 @@ Notice that MiraRecycleView is a project under development.
 * Loading adapter with animation
 * Fixable ErrorView For any situation
 
-######### Quick Setup (Basic Usage)
-
-######### 1.Using Gradle:
+# Quick Setup (Basic Usage)
+# 1.Using Gradle:
 
 ```groovy
     allprojects {
