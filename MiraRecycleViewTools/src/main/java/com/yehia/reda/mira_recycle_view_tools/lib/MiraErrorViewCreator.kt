@@ -144,7 +144,7 @@ class MiraErrorViewCreator : RelativeLayout {
                 if (typedArray.getString(R.styleable.MiraErrorViewCreator_mira_error_action)
                         .isNullOrEmpty()
                 ) {
-                    context1.getString(R.string.try_again)
+                    ""
                 } else {
                     typedArray.getString(R.styleable.MiraErrorViewCreator_mira_error_action)!!
                 }
@@ -236,7 +236,7 @@ class MiraErrorViewCreator : RelativeLayout {
         }
         binding.tvErrorMessage.setTxtColor(errorMessageColor)
 
-        if (errorTitle.isNotEmpty()) {
+        if (actionText.isNotEmpty()) {
             binding.btnErrorAction.text = actionText
             binding.btnErrorAction.setTxtColor(actionTextColor)
             if (actionBackGround != 0) {

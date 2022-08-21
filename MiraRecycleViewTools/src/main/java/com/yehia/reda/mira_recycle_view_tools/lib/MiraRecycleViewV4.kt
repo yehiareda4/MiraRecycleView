@@ -248,8 +248,8 @@ class MiraRecycleViewV4 : RelativeLayout {
     private fun setPagination(manger: RecyclerView.LayoutManager) {
         onEndLess = object : OnEndLess(manger, 1) {
             override fun onLoadMore(current_page: Int) {
-                if (currantPage <= maxPage) {
-                    if (maxPage != 0 && currantPage != 1) {
+                if (current_page <= maxPage) {
+                    if (maxPage != 0 && current_page != 1) {
                         currantPage = current_page
                         onEndLess.previous_page = currantPage
                         stopLoading(currantPage)
@@ -258,7 +258,6 @@ class MiraRecycleViewV4 : RelativeLayout {
                     } else {
                         toggleShimmerLoading(GONE)
                         onEndLess.current_page = onEndLess.previous_page
-                        currantPage = current_page
                     }
                 } else {
                     onEndLess.current_page = onEndLess.previous_page
