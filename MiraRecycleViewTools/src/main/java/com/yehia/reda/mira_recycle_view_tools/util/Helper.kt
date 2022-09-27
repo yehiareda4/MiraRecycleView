@@ -2,6 +2,8 @@ package com.yehia.reda.mira_recycle_view_tools.util
 
 import android.content.Context
 import android.graphics.Typeface
+import android.os.Handler
+import android.os.Looper
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
@@ -9,6 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.yehia.reda.mira_recycle_view_tools.R
 import com.yehia.reda.mira_recycle_view_tools.databinding.LayoutMiraProgressBinding
@@ -53,6 +56,9 @@ fun LayoutMiraProgressBinding.setProgress(
             this.llLoadingMorData.isVisible = true
         }
         NO_MORE_DATA -> {
+            Handler(Looper.getMainLooper()).postDelayed({
+                this.llNoMoreData.isGone = true
+            }, 3000)
             this.llNoMoreData.isVisible = true
         }
     }

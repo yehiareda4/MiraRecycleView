@@ -3,7 +3,7 @@ package com.yehia.reda.mira_recycle_view_tools.util
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class OnEndLess(linearLayoutManager: Any, visibleThreshold: Int) :
+abstract class OnEndLess(layoutManager: Any, visibleThreshold: Int) :
     RecyclerView.OnScrollListener() {
 
     private var loading = true // True if we are still waiting for the last set of data to load.
@@ -32,8 +32,6 @@ abstract class OnEndLess(linearLayoutManager: Any, visibleThreshold: Int) :
             <= firstVisibleItem + visibleThreshold
         ) {
             // End has been reached
-
-
             // Do something
             current_page++
             onLoadMore(current_page)
@@ -44,7 +42,7 @@ abstract class OnEndLess(linearLayoutManager: Any, visibleThreshold: Int) :
     abstract fun onLoadMore(current_page: Int)
 
     init {
-        mLinearLayoutManager = linearLayoutManager as LinearLayoutManager
+        mLinearLayoutManager = layoutManager as LinearLayoutManager
         this.visibleThreshold = visibleThreshold
     }
 }

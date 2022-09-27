@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yehia.reda.mira_recycle_view_tools.lib.MiraRecycleViewV4
 import com.yehia.reda.mira_recycle_view_tools.util.CallBack
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 //
 //        list.applySkeleton(R.layout.item3, 6).apply { showSkeleton() }
         val mrvList = findViewById<MiraRecycleViewV4>(R.id.mrv_list)
-        mrvList.setUp(LinearLayoutManager(this), object : CallBack {
+        mrvList.setUp(GridLayoutManager(this,2), object : CallBack {
             override fun onLoadMore(current_page: Int) {
                 Handler(Looper.getMainLooper()).postDelayed({
                     mrvList.stopLoading(current_page)
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({
                     mrvList.stopLoading()
                     if (!error) {
-                        mrvList.maxPage = 4
+                        mrvList.maxPage = 10
                         addData()
                         error = true
                     } else {
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 selectedAdapter = SelectedAdapter()
                 mrvList.setAdapter(selectedAdapter)
                 Handler(Looper.getMainLooper()).postDelayed({
-                    mrvList.maxPage = 2
+                    mrvList.maxPage = 10
                     addData()
                     mrvList.stopLoading()
                 }, 4000)
@@ -73,6 +74,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addData() {
+        val oldIndex = selectedAdapter.list.size
+        selectedAdapter.list.add(1)
+        selectedAdapter.list.add(1)
         selectedAdapter.list.add(1)
         selectedAdapter.list.add(1)
         selectedAdapter.list.add(1)

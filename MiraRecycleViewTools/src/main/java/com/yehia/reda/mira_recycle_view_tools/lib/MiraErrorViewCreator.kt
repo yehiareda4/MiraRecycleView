@@ -236,14 +236,15 @@ class MiraErrorViewCreator : RelativeLayout {
         }
         binding.tvErrorMessage.setTxtColor(errorMessageColor)
 
-        if (actionText.isNotEmpty()) {
+        if (actionText.isEmpty()) {
+            binding.btnErrorAction.isGone = true
+        } else {
+            binding.btnErrorAction.isGone = false
             binding.btnErrorAction.text = actionText
             binding.btnErrorAction.setTxtColor(actionTextColor)
             if (actionBackGround != 0) {
                 binding.btnErrorAction.setBackgroundResource(actionBackGround)
             }
-        } else {
-            binding.btnErrorAction.isGone = true
         }
 
         val typeface: Typeface = ResourcesCompat.getFont(context, font)!!

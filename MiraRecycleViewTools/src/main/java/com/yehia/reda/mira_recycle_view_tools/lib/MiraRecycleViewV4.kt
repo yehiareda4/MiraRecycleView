@@ -7,19 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.yehia.reda.mira_recycle_view_tools.R
 import com.yehia.reda.mira_recycle_view_tools.databinding.LayoutMiraProgressBinding
 import com.yehia.reda.mira_recycle_view_tools.databinding.LayoutMiraRecycleViewV4Binding
-import com.yehia.reda.mira_recycle_view_tools.util.CallBack
-import com.yehia.reda.mira_recycle_view_tools.util.Constant
+import com.yehia.reda.mira_recycle_view_tools.util.*
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.HIDDEN_PROGRESS
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.LOADING_MORE_DATA
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.NOT_REVERSED
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.NO_MORE_DATA
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.REVERSED
-import com.yehia.reda.mira_recycle_view_tools.util.OnEndLess
-import com.yehia.reda.mira_recycle_view_tools.util.setProgress
 
 class MiraRecycleViewV4 : RelativeLayout {
 
@@ -29,7 +29,7 @@ class MiraRecycleViewV4 : RelativeLayout {
     val binding get() = _binding!!
 
     private var refreshing = true
-    lateinit var onEndLess: OnEndLess
+    lateinit var onEndLess: OnEndLessx
     lateinit var callBack: CallBack
 
     private lateinit var manger: RecyclerView.LayoutManager
@@ -213,16 +213,22 @@ class MiraRecycleViewV4 : RelativeLayout {
     }
 
     fun toggleShimmerLoading(visibility: Int) {
-        if (visibility == VISIBLE) {
-            miraShimmerCreator.showShimmer()
-        } else {
-            miraShimmerCreator.hiddenShimmer()
+        if (::miraShimmerCreator.isInitialized) {
+            if (visibility == VISIBLE) {
+                miraShimmerCreator.showShimmer()
+            } else {
+                miraShimmerCreator.hiddenShimmer()
+            }
         }
     }
 
     private fun setUpMiraRecycleView(manger: RecyclerView.LayoutManager) {
         binding.rvList.layoutManager = manger
-        setPagination(manger)
+        when (manger) {
+            is GridLayoutManager -> setPagination(manger as GridLayoutManager)
+            is StaggeredGridLayoutManager -> setPagination(manger as StaggeredGridLayoutManager)
+            else -> setPagination(manger as LinearLayoutManager)
+        }
         binding.srlRefresh.setOnRefreshListener {
             onRefresh()
         }
@@ -239,36 +245,52 @@ class MiraRecycleViewV4 : RelativeLayout {
     }
 
     private fun reset() {
-        onEndLess.previousTotal = 0
-        onEndLess.current_page = 1
-        onEndLess.previous_page = 1
         maxPage = 0
     }
 
-    private fun setPagination(manger: RecyclerView.LayoutManager) {
-        onEndLess = object : OnEndLess(manger, 1) {
-            override fun onLoadMore(current_page: Int) {
-                if (current_page <= maxPage) {
-                    if (maxPage != 0 && current_page != 1) {
-                        currantPage = current_page
-                        onEndLess.previous_page = currantPage
-                        stopLoading(currantPage)
-                        progressLayout.setProgress(LOADING_MORE_DATA, font, progressTxtColor)
-                        callBack.onLoadMore(currantPage)
-                    } else {
-                        toggleShimmerLoading(GONE)
-                        onEndLess.current_page = onEndLess.previous_page
-                    }
-                } else {
-                    onEndLess.current_page = onEndLess.previous_page
-                    currantPage = current_page
-                    if (maxPage != 0) {
-                        progressLayout.setProgress(NO_MORE_DATA, font, progressTxtColor)
-                    }
-                }
+    private fun setPagination(manger: LinearLayoutManager) {
+        onEndLess = object : OnEndLessx(manger) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                loadNewPage(page)
             }
         }
         binding.rvList.addOnScrollListener(onEndLess)
+    }
+
+    private fun setPagination(manger: GridLayoutManager) {
+        onEndLess = object : OnEndLessx(manger) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                loadNewPage(page)
+            }
+        }
+        binding.rvList.addOnScrollListener(onEndLess)
+    }
+
+    private fun setPagination(manger: StaggeredGridLayoutManager) {
+        onEndLess = object : OnEndLessx(manger) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                loadNewPage(page)
+            }
+        }
+        binding.rvList.addOnScrollListener(onEndLess)
+    }
+
+    private fun loadNewPage(current_page: Int) {
+        if (current_page <= maxPage) {
+            if (maxPage != 0 && current_page != 1) {
+                currantPage = current_page
+                stopLoading(currantPage)
+                progressLayout.setProgress(LOADING_MORE_DATA, font, progressTxtColor)
+                callBack.onLoadMore(currantPage)
+            } else {
+                toggleShimmerLoading(GONE)
+            }
+        } else {
+            currantPage = current_page
+            if (maxPage != 0) {
+                progressLayout.setProgress(NO_MORE_DATA, font, progressTxtColor)
+            }
+        }
     }
 
     fun setAdapter(adapter: RecyclerView.Adapter<*>?) {

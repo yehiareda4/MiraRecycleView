@@ -114,6 +114,8 @@ class MiraShimmerCreator {
     }
 
     fun hiddenShimmer() {
-        skeleton.showOriginal()
+        if (skeleton.isSkeleton()) {
+            skeleton.showOriginal()
+        }
     }
 }
