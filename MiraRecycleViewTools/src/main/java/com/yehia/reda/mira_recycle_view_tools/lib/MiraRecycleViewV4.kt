@@ -235,10 +235,10 @@ class MiraRecycleViewV4 : RelativeLayout {
     }
 
     fun onRefresh() {
-        reset()
         callBack.onReset()
-        progressLayout.setProgress(HIDDEN_PROGRESS)
+        reset()
         stopLoading()
+        progressLayout.setProgress(HIDDEN_PROGRESS)
         binding.srlRefresh.isRefreshing = true
         toggleShimmerLoading(VISIBLE)
         callBack.onRefresh()
@@ -246,6 +246,11 @@ class MiraRecycleViewV4 : RelativeLayout {
 
     private fun reset() {
         maxPage = 0
+        when (manger) {
+            is GridLayoutManager -> setPagination(manger as GridLayoutManager)
+            is StaggeredGridLayoutManager -> setPagination(manger as StaggeredGridLayoutManager)
+            else -> setPagination(manger as LinearLayoutManager)
+        }
     }
 
     private fun setPagination(manger: LinearLayoutManager) {

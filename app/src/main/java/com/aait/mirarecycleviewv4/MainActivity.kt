@@ -32,18 +32,16 @@ class MainActivity : AppCompatActivity() {
                     mrvList.stopLoading(current_page)
                     mrvList.hiddenProgress()
                     addData()
-                }, 3000)
+                }, 2000)
             }
 
             override fun onRefresh() {
-                selectedAdapter.list.clear()
-                selectedAdapter.toString()
                 Handler(Looper.getMainLooper()).postDelayed({
                     mrvList.stopLoading()
                     if (!error) {
                         mrvList.maxPage = 10
                         addData()
-                        error = true
+//                        error = true
                     } else {
                         mrvList.toggleShowError(VISIBLE)
                     }
@@ -51,8 +49,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onReset() {
-                selectedAdapter = SelectedAdapter()
-                mrvList.setAdapter(selectedAdapter)
+                selectedAdapter.list.clear()
+                selectedAdapter.notifyDataSetChanged()
+//                selectedAdapter = SelectedAdapter()
+//                mrvList.setAdapter(selectedAdapter)
                 mrvList.maxPage = 0
             }
 
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                     mrvList.maxPage = 10
                     addData()
                     mrvList.stopLoading()
-                }, 4000)
+                }, 2000)
             }
 
             override fun onErrorClick() {

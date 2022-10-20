@@ -26,7 +26,7 @@ class SelectedAdapter() : RecyclerView.Adapter<SelectedAdapter.ViewHolder>() {
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.binding.tvNum.text = "$position"
     }
 
     class ViewHolder(val binding: Item3Binding) :
