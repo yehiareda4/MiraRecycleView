@@ -16,6 +16,8 @@
         app:mira_error_action_back_ground="@drawable/shape_btn"
         app:mira_error_message="ugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiuugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiuugrgksjfdgrkuagusuhgreuidfgherudgrheoughreughredsiuhgerliugrfdjiurshgteiu"
         app:mira_refreshing="true"
+        app:mira_layout_manger="grid_layout_manger"
+        app:mira_span_count="3"
         app:mira_shimmer_layout="@layout/item3"
         app:mira_toggle_show_error="gone"
         app:mira_reversed_layout="not_reversed"

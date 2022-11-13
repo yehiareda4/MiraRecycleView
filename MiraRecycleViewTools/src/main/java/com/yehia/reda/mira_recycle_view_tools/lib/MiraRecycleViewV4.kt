@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -161,6 +162,28 @@ class MiraRecycleViewV4 : RelativeLayout {
             }
 
             binding.srlRefresh.isEnabled = refreshing
+
+            val mangerKey =
+                typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_layout_manger, 3)
+            val spanCount =
+                typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_span_count, 2)
+
+            binding.srlRefresh.isEnabled = this.refreshing
+            if (mangerKey != 3) {
+                manger = when (mangerKey) {
+                    0 -> LinearLayoutManager(context)
+                    1 -> GridLayoutManager(context, spanCount)
+                    else -> StaggeredGridLayoutManager(spanCount, LinearLayout.VERTICAL)
+                }
+                setUpMiraRecycleView(manger)
+
+                if (shimmerLayout != 0) {
+                    setsFlShimmer(
+                        shimmerLayout
+                    )
+                    toggleShimmerLoading(visibility)
+                }
+            }
         }
     }
 
@@ -210,6 +233,12 @@ class MiraRecycleViewV4 : RelativeLayout {
             )
             toggleShimmerLoading(visibility)
         }
+    }
+
+    fun setUp(callBack: CallBack) {
+        this.callBack = callBack
+        miraErrorView.onErrorBtnClick { callBack.onErrorClick() }
+        this.callBack.onInit()
     }
 
     fun toggleShimmerLoading(visibility: Int) {

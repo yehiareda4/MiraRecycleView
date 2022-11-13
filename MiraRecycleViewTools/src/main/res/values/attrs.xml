@@ -87,6 +87,14 @@
             <enum name="not_reversed" value="1" />
         </attr>
 
+        <attr name="mira_layout_manger" format="integer">
+            <enum name="liner_layout_manger" value="0" />
+            <enum name="grid_layout_manger" value="1" />
+            <enum name="staggered_grid_layout_manger" value="2" />
+            <enum name="other_in_code" value="3" />
+        </attr>
+
+        <attr name="mira_span_count" format="integer" />
 
     </declare-styleable>
 
