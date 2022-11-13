@@ -236,10 +236,18 @@ class MiraRecycleViewV4 : RelativeLayout {
     }
 
     fun setUp(callBack: CallBack) {
+        binding.srlRefresh.isEnabled = this.refreshing
         this.callBack = callBack
         setUpMiraRecycleView(manger)
         miraErrorView.onErrorBtnClick { callBack.onErrorClick() }
         this.callBack.onInit()
+
+        if (shimmerLayout != 0) {
+            setsFlShimmer(
+                shimmerLayout
+            )
+            toggleShimmerLoading(visibility)
+        }
     }
 
     fun toggleShimmerLoading(visibility: Int) {
