@@ -237,6 +237,7 @@ class MiraRecycleViewV4 : RelativeLayout {
 
     fun setUp(callBack: CallBack) {
         this.callBack = callBack
+        setUpMiraRecycleView(manger)
         miraErrorView.onErrorBtnClick { callBack.onErrorClick() }
         this.callBack.onInit()
     }
