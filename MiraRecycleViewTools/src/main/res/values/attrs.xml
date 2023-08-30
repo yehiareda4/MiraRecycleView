@@ -11,7 +11,7 @@
     <attr name="mira_error_image" format="reference" />
     <attr name="mira_error_image_type" format="integer">
         <enum name="other" value="0" />
-        <enum name="gif" value="1" />
+        <enum name="lottie" value="1" />
     </attr>
 
     <attr name="mira_error_title" format="string" />

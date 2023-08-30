@@ -1,7 +1,7 @@
 package com.yehia.reda.mira_recycle_view_tools.util
 
 object Constant {
-    const val GIF = "gif"
+    const val LOTTIE = "lottie"
     const val OTHER = "other"
 
     const val REVERSED = "reversed"

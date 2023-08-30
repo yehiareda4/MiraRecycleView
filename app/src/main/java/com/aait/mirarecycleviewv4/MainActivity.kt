@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 selectedAdapter.notifyDataSetChanged()
 //                selectedAdapter = SelectedAdapter()
 //                mrvList.setAdapter(selectedAdapter)
+                error = true
                 mrvList.maxPage = 0
             }
 

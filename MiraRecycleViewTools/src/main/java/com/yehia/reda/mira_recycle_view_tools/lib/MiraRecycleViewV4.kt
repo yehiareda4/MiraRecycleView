@@ -370,7 +370,7 @@ class MiraRecycleViewV4 : RelativeLayout {
     }
 
     fun changeData(
-        errorImage: Int = R.drawable.ic_no_connection_vector,
+        errorImage: Int = R.drawable.ic_no_connection,
         errorImageTypeTxt: String = Constant.OTHER,
         errorTitle: String = "",
         errorMessage: String = "",

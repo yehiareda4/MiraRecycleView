@@ -12,11 +12,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isGone
 import com.yehia.reda.mira_recycle_view_tools.R
 import com.yehia.reda.mira_recycle_view_tools.databinding.LayoutMiraErrorBinding
-import com.yehia.reda.mira_recycle_view_tools.util.CallBack
-import com.yehia.reda.mira_recycle_view_tools.util.Constant.GIF
+import com.yehia.reda.mira_recycle_view_tools.util.Constant.LOTTIE
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.OTHER
 import com.yehia.reda.mira_recycle_view_tools.util.setTxtColor
-import pl.droidsonroids.gif.GifDrawable
 
 class MiraErrorViewCreator : RelativeLayout {
 
@@ -66,9 +64,7 @@ class MiraErrorViewCreator : RelativeLayout {
     }
 
     private fun initView(
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0,
-        parent: ViewGroup? = null
+        attrs: AttributeSet? = null, defStyleAttr: Int = 0, parent: ViewGroup? = null
     ) {
         val inflater = LayoutInflater.from(context1)
         if (_binding == null) {
@@ -101,11 +97,9 @@ class MiraErrorViewCreator : RelativeLayout {
             toggleShowError =
                 typedArray.getInteger(R.styleable.MiraErrorViewCreator_mira_toggle_show_error, 2)
 
-            errorBackGround =
-                typedArray.getResourceId(
-                    R.styleable.MiraErrorViewCreator_mira_error_back_ground_color,
-                    0
-                )
+            errorBackGround = typedArray.getResourceId(
+                R.styleable.MiraErrorViewCreator_mira_error_back_ground_color, 0
+            )
             errorImage =
                 typedArray.getResourceId(R.styleable.MiraErrorViewCreator_mira_error_image, 0)
             val type =
@@ -113,7 +107,7 @@ class MiraErrorViewCreator : RelativeLayout {
             errorImageTypeTxt = if (type == 0) {
                 OTHER
             } else {
-                GIF
+                LOTTIE
             }
 
             errorTitle = if (typedArray.getString(R.styleable.MiraErrorViewCreator_mira_error_title)
@@ -169,7 +163,7 @@ class MiraErrorViewCreator : RelativeLayout {
     private fun setUp(
         errorBackGround: Int = 0,
         toggleShowError: Int = 2,
-        errorImage: Int = R.drawable.ic_no_connection_vector,
+        errorImage: Int = R.drawable.ic_no_connection,
         errorImageTypeTxt: String = OTHER,
         errorTitle: String = "",
         errorTitleColor: Int = R.color.txt_message,
@@ -199,7 +193,7 @@ class MiraErrorViewCreator : RelativeLayout {
     fun reset() {
         errorBackGround = 0
         toggleShowError = 2
-        errorImage = R.drawable.ic_no_connection_vector
+        errorImage = R.drawable.ic_no_connection
         errorImageTypeTxt = OTHER
         errorTitle = ""
         errorTitleColor = R.color.txt_message
@@ -217,12 +211,28 @@ class MiraErrorViewCreator : RelativeLayout {
         if (errorBackGround != 0) {
             binding.rlError.setBackgroundColor(ContextCompat.getColor(context1, errorBackGround))
         }
+        binding.ivErrorImage.visibility = GONE
+        binding.lavErrorImage.visibility = GONE
         if (errorImage != 0) {
             when (errorImageTypeTxt) {
-                OTHER -> binding.ivErrorImage.setImageResource(errorImage)
+                OTHER -> {
+                    binding.ivErrorImage.visibility = VISIBLE
+                    binding.ivErrorImage.setImageResource(errorImage)
+                }
                 else -> {
-                    val gifFromResource = GifDrawable(context1.resources, errorImage)
-                    binding.givErrorImage.setImageDrawable(gifFromResource)
+                    binding.lavErrorImage.visibility = VISIBLE
+                    binding.lavErrorImage.setAnimation(errorImage)
+                }
+            }
+        } else {
+            when (errorImageTypeTxt) {
+                OTHER -> {
+                    binding.ivErrorImage.visibility = VISIBLE
+                    binding.ivErrorImage.setImageResource(R.drawable.ic_no_connection)
+                }
+                else -> {
+                    binding.lavErrorImage.visibility = VISIBLE
+                    binding.lavErrorImage.setAnimation(R.raw.no_data)
                 }
             }
         }
@@ -263,18 +273,34 @@ class MiraErrorViewCreator : RelativeLayout {
     }
 
     fun changeData(
-        errorImage: Int = R.drawable.ic_no_connection_vector,
+        errorImage: Int = 0,
         errorImageTypeTxt: String = OTHER,
         errorTitle: String = "",
         errorMessage: String = "",
         actionText: String = "",
     ) {
+        binding.ivErrorImage.visibility = GONE
+        binding.lavErrorImage.visibility = GONE
         if (errorImage != 0) {
             when (errorImageTypeTxt) {
-                OTHER -> binding.ivErrorImage.setImageResource(errorImage)
+                OTHER -> {
+                    binding.ivErrorImage.visibility = VISIBLE
+                    binding.ivErrorImage.setImageResource(errorImage)
+                }
                 else -> {
-                    val gifFromResource = GifDrawable(context1.resources, errorImage)
-                    binding.givErrorImage.setImageDrawable(gifFromResource)
+                    binding.lavErrorImage.visibility = VISIBLE
+                    binding.lavErrorImage.setAnimation(errorImage)
+                }
+            }
+        } else {
+            when (errorImageTypeTxt) {
+                OTHER -> {
+                    binding.ivErrorImage.visibility = VISIBLE
+                    binding.ivErrorImage.setImageResource(R.drawable.ic_no_connection)
+                }
+                else -> {
+                    binding.lavErrorImage.visibility = VISIBLE
+                    binding.lavErrorImage.setAnimation(R.raw.no_data)
                 }
             }
         }
