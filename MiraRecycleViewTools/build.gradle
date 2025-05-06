@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace = "com.yehia.reda.mira_recycle_view_tools"
     compileSdk 31
     compileSdkVersion 31
 

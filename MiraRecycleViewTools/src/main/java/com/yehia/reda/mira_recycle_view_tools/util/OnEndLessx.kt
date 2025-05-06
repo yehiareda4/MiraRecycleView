@@ -9,16 +9,17 @@ abstract class OnEndLessx : RecyclerView.OnScrollListener {
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private var visibleThreshold = 5
+     var visibleThreshold = 5
+    var visibleThresholdPlus = 0
 
     // The current offset index of data you have loaded
     private var currentPage = 0
 
     // The total number of items in the dataset after the last load
-    private var previousTotalItemCount = 0
+     var previousTotalItemCount = 0
 
     // True if we are still waiting for the last set of data to load.
-    private var loading = true
+     var loading = true
 
     // Sets the starting page index
     private val startingPageIndex = 0
@@ -85,8 +86,8 @@ abstract class OnEndLessx : RecyclerView.OnScrollListener {
         // the visibleThreshold and need to reload more data.
         // If we do need to reload some more data, we execute onLoadMore to fetch the data.
         // threshold should reflect how many total columns there are too
-        if (!loading && lastVisibleItemPosition + visibleThreshold > totalItemCount && view.adapter?.itemCount!! > visibleThreshold
-        ) { // This condition will useful when recyclerview has less than visibleThreshold items
+        if (!loading && (lastVisibleItemPosition + visibleThreshold + visibleThresholdPlus) > totalItemCount && view.adapter?.itemCount!! > visibleThreshold) {
+            // This condition will useful when recyclerview has less than visibleThreshold items
             currentPage++
             onLoadMore(currentPage, totalItemCount, view)
             loading = true

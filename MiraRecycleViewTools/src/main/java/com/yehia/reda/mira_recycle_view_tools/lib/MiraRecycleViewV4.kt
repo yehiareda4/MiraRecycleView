@@ -57,29 +57,23 @@ class MiraRecycleViewV4 : RelativeLayout {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         this.context1 = context
         initView(
-            attrs,
-            0
+            attrs, 0
         )
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         this.context1 = context
         initView(
-            attrs,
-            defStyleAttr
+            attrs, defStyleAttr
         )
     }
 
     private fun initView() {
         if (_binding == null) {
             _binding = LayoutMiraRecycleViewV4Binding.inflate(
-                LayoutInflater.from(context),
-                parent as ViewGroup?,
-                false
+                LayoutInflater.from(context), parent as ViewGroup?, false
             )
         }
         addView(binding.root)
@@ -111,21 +105,17 @@ class MiraRecycleViewV4 : RelativeLayout {
             shimmerLayout =
                 typedArray.getResourceId(R.styleable.MiraRecycleViewV4_mira_shimmer_layout, 0)
             shimmerColor = typedArray.getResourceId(
-                R.styleable.MiraRecycleViewV4_mira_shimmerColor,
-                R.color.skeleton_shimmer
+                R.styleable.MiraRecycleViewV4_mira_shimmerColor, R.color.skeleton_shimmer
             )
             maskColor = typedArray.getResourceId(
-                R.styleable.MiraRecycleViewV4_mira_maskColor,
-                R.color.skeleton_mask
+                R.styleable.MiraRecycleViewV4_mira_maskColor, R.color.skeleton_mask
             )
             duration = typedArray.getResourceId(R.styleable.MiraRecycleViewV4_mira_duration, 1000)
             countItem = typedArray.getResourceId(R.styleable.MiraRecycleViewV4_mira_countItem, 8)
 
-            val visibility =
-                typedArray.getInt(
-                    R.styleable.MiraRecycleViewV4_mira_toggle_show_shimmer,
-                    View.VISIBLE
-                )
+            val visibility = typedArray.getInt(
+                R.styleable.MiraRecycleViewV4_mira_toggle_show_shimmer, View.VISIBLE
+            )
             this.visibility = when (visibility) {
                 0 -> {
                     View.VISIBLE
@@ -141,8 +131,7 @@ class MiraRecycleViewV4 : RelativeLayout {
                 MiraErrorViewCreator(_binding!!.root.context!!, attrs, binding.root as ViewGroup)
 
             progressTxtColor = typedArray.getResourceId(
-                R.styleable.MiraRecycleViewV4_mira_progress_txt_color,
-                R.color.txt_title
+                R.styleable.MiraRecycleViewV4_mira_progress_txt_color, R.color.txt_title
             )
             font = typedArray.getResourceId(
                 R.styleable.MiraErrorViewCreator_mira_error_font, R.font.urw_din_bold
@@ -155,6 +144,7 @@ class MiraRecycleViewV4 : RelativeLayout {
                     progressLayout = binding.lyProgTop
                     REVERSED
                 }
+
                 else -> {
                     progressLayout = binding.lyProgBottom
                     NOT_REVERSED
@@ -163,10 +153,8 @@ class MiraRecycleViewV4 : RelativeLayout {
 
             binding.srlRefresh.isEnabled = refreshing
 
-            val mangerKey =
-                typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_layout_manger, 3)
-            val spanCount =
-                typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_span_count, 2)
+            val mangerKey = typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_layout_manger, 3)
+            val spanCount = typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_span_count, 2)
 
             binding.srlRefresh.isEnabled = this.refreshing
             if (mangerKey != 3) {
@@ -198,7 +186,7 @@ class MiraRecycleViewV4 : RelativeLayout {
         manger: RecyclerView.LayoutManager,
         shimmerLayout: Int,
         callBack: CallBack,
-        refreshing: Boolean = true
+        refreshing: Boolean = true,
     ) {
         this.refreshing = refreshing
         binding.srlRefresh.isEnabled = this.refreshing
@@ -218,7 +206,7 @@ class MiraRecycleViewV4 : RelativeLayout {
 
     fun setUp(
         manger: RecyclerView.LayoutManager,
-        callBack: CallBack
+        callBack: CallBack,
     ) {
         binding.srlRefresh.isEnabled = this.refreshing
         this.manger = manger
@@ -377,11 +365,7 @@ class MiraRecycleViewV4 : RelativeLayout {
         actionText: String = "",
     ) {
         miraErrorView.changeData(
-            errorImage,
-            errorImageTypeTxt,
-            errorTitle,
-            errorMessage,
-            actionText
+            errorImage, errorImageTypeTxt, errorTitle, errorMessage, actionText
         )
     }
 
