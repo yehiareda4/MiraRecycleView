@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.yehia.reda.mira_recycle_view_tools.R
 import com.yehia.reda.mira_recycle_view_tools.databinding.LayoutMiraProgressBinding
+import com.yehia.reda.mira_recycle_view_tools.databinding.LayoutMiraRecycleViewBinding
 import com.yehia.reda.mira_recycle_view_tools.databinding.LayoutMiraRecycleViewV4Binding
 import com.yehia.reda.mira_recycle_view_tools.util.*
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.HIDDEN_PROGRESS
@@ -22,11 +23,11 @@ import com.yehia.reda.mira_recycle_view_tools.util.Constant.NOT_REVERSED
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.NO_MORE_DATA
 import com.yehia.reda.mira_recycle_view_tools.util.Constant.REVERSED
 
-class MiraRecycleViewV4 : RelativeLayout {
+class MiraRecycleView : RelativeLayout {
 
     private var context1: Context
 
-    private var _binding: LayoutMiraRecycleViewV4Binding? = null
+    private var _binding: LayoutMiraRecycleViewBinding? = null
     val binding get() = _binding!!
 
     private var refreshing = true
@@ -72,7 +73,7 @@ class MiraRecycleViewV4 : RelativeLayout {
 
     private fun initView() {
         if (_binding == null) {
-            _binding = LayoutMiraRecycleViewV4Binding.inflate(
+            _binding = LayoutMiraRecycleViewBinding.inflate(
                 LayoutInflater.from(context), parent as ViewGroup?, false
             )
         }
@@ -83,7 +84,7 @@ class MiraRecycleViewV4 : RelativeLayout {
     private fun initView(attrs: AttributeSet, defStyleAttr: Int) {
         val inflater = LayoutInflater.from(context1)
         if (_binding == null) {
-            _binding = LayoutMiraRecycleViewV4Binding.inflate(
+            _binding = LayoutMiraRecycleViewBinding.inflate(
                 inflater, parent as ViewGroup?, false
             )
         }
@@ -114,15 +115,15 @@ class MiraRecycleViewV4 : RelativeLayout {
             countItem = typedArray.getResourceId(R.styleable.MiraRecycleViewV4_mira_countItem, 8)
 
             val visibility = typedArray.getInt(
-                R.styleable.MiraRecycleViewV4_mira_toggle_show_shimmer, View.VISIBLE
+                R.styleable.MiraRecycleViewV4_mira_toggle_show_shimmer, VISIBLE
             )
             this.visibility = when (visibility) {
                 0 -> {
-                    View.VISIBLE
+                    VISIBLE
                 }
 
                 else -> {
-                    View.GONE
+                    GONE
                 }
             }
             refreshing = typedArray.getBoolean(R.styleable.MiraRecycleViewV4_mira_refreshing, true)
@@ -151,12 +152,9 @@ class MiraRecycleViewV4 : RelativeLayout {
                 }
             }
 
-            binding.srlRefresh.isEnabled = refreshing
-
             val mangerKey = typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_layout_manger, 3)
             val spanCount = typedArray.getInt(R.styleable.MiraRecycleViewV4_mira_span_count, 2)
 
-            binding.srlRefresh.isEnabled = this.refreshing
             if (mangerKey != 3) {
                 manger = when (mangerKey) {
                     0 -> LinearLayoutManager(context)
@@ -189,7 +187,6 @@ class MiraRecycleViewV4 : RelativeLayout {
         refreshing: Boolean = true,
     ) {
         this.refreshing = refreshing
-        binding.srlRefresh.isEnabled = this.refreshing
         this.callBack = callBack
         this.manger = manger
         setUpMiraRecycleView(manger)
@@ -208,7 +205,6 @@ class MiraRecycleViewV4 : RelativeLayout {
         manger: RecyclerView.LayoutManager,
         callBack: CallBack,
     ) {
-        binding.srlRefresh.isEnabled = this.refreshing
         this.manger = manger
         this.callBack = callBack
         setUpMiraRecycleView(manger)
@@ -224,7 +220,6 @@ class MiraRecycleViewV4 : RelativeLayout {
     }
 
     fun setUp(callBack: CallBack) {
-        binding.srlRefresh.isEnabled = this.refreshing
         this.callBack = callBack
         setUpMiraRecycleView(manger)
         miraErrorView.onErrorBtnClick { callBack.onErrorClick() }
@@ -255,9 +250,6 @@ class MiraRecycleViewV4 : RelativeLayout {
             is StaggeredGridLayoutManager -> setPagination(manger as StaggeredGridLayoutManager)
             else -> setPagination(manger as LinearLayoutManager)
         }
-        binding.srlRefresh.setOnRefreshListener {
-            onRefresh()
-        }
     }
 
     fun onRefresh() {
@@ -265,7 +257,6 @@ class MiraRecycleViewV4 : RelativeLayout {
         reset()
         stopLoading()
         progressLayout.setProgress(HIDDEN_PROGRESS)
-        binding.srlRefresh.isRefreshing = true
         toggleShimmerLoading(VISIBLE)
         callBack.onRefresh()
     }
@@ -335,7 +326,6 @@ class MiraRecycleViewV4 : RelativeLayout {
             if (page != 0) {
                 progressLayout.setProgress(NO_MORE_DATA, font, progressTxtColor)
             } else {
-                binding.srlRefresh.isRefreshing = false
                 progressLayout.setProgress(HIDDEN_PROGRESS)
             }
         }
@@ -346,7 +336,6 @@ class MiraRecycleViewV4 : RelativeLayout {
         toggleShimmerLoading(GONE)
         progressLayout.setProgress(HIDDEN_PROGRESS)
         toggleShowError(GONE)
-        binding.srlRefresh.isRefreshing = false
     }
 
     fun toggleShowError(visibility: Int) {

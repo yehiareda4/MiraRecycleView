@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yehia.reda.mira_recycle_view"
+    namespace = "com.yehia.reda.mira_recycle_view_tools"
     compileSdk 31
     compileSdkVersion 31
 
@@ -16,7 +16,6 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 31
-        applicationId "com.yehia.reda.mira_recycle_view"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
