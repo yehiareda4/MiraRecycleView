@@ -5,17 +5,16 @@ plugins {
 }
 
 android {
-    namespace = "com.yehia.reda.mira_recycle_view_tools"
-    compileSdk 31
-    compileSdkVersion 31
+    namespace = "com.yehia.reda.mira_recycle_tools"
+    compileSdk = 35
 
-    configurations.all {
+    configurations.configureEach {
         resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
     }
 
     defaultConfig {
-        minSdk 21
-        targetSdk 31
+        minSdk = 21
+        targetSdk = 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
